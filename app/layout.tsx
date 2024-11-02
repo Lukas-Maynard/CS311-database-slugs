@@ -17,15 +17,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/videos">Videos</a>
+        </nav>
         <div className="container mx-auto px-4">
 
-          <div>Header stuff 
-            <div>
-              <a href="/eggs">EggsLink</a>
-            </div>
-          </div>
+          
             <div>{children}</div>
-          <div>Footer stuff </div>
+          
         </div>
         
       </body>

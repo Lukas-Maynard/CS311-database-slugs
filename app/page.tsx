@@ -1,24 +1,19 @@
-'use client'
+import { useState } from "react";
+import { PrismaClient } from "@prisma/client"
 
-import Dog from "./dog";
-import Nav from "./navigation"
-import Tweetsdisplay from "./tweetsdisplay"
-import { useState, useEffect } from "react"
-import Link from 'next/link'
-import React from "react";
+const prisma = new PrismaClient()
 
-export default function Home() {
+export default async function Home() {
 
-  const [exampleData, setExampleData] = useState("");
-
-   
-
+  const video = await prisma.video.findUnique({
+    where: { id: 10}
+  });
 
   return (
     <div id="content">
-       Home page
-
-      
+      <ul>
+       {video.name} - {video.votes}
+       </ul>
     </div>    
   );
 }
