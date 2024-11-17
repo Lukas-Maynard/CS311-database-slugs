@@ -1,21 +1,26 @@
-import { PrismaClient } from '@prisma/client'
-export default async function Page( ) {
-    const prisma = new PrismaClient()
+// videos/page.tsx
+import { PrismaClient } from '@prisma/client';
+import AddVideoForm from './addVideoForm';
 
-    //Get ALL the videos
-    let videos = await prisma.video.findMany()
+export default async function Page() {
+    const prisma = new PrismaClient();
 
-    const videoList = videos.map((video) => 
-        <li>
-            <a href={"/videos/video/"+video.id}>{video.name}</a>
-            <a href={"/videos/update/"+video.id}>[edit]</a>
-        </li> 
-    )
+    // Get ALL the videos
+    let videos = await prisma.video.findMany();
 
-    return( <div>  
-        <h2>Videos</h2>
-        <ul>
-            {videoList}
-        </ul>
-    </div> )
+    const videoList = videos.map((video) => (
+        <li key={video.id}>
+            <a href={`/videos/video/${video.id}`}>{video.name}</a>
+            <a href={`/videos/update/${video.id}`}>[edit]</a>
+        </li>
+    ));
+
+    return (
+        <div>
+            <h1>Add video</h1>
+            <AddVideoForm />
+            <h2>Videos</h2>
+            <ul>{videoList}</ul>
+        </div>
+    );
 }
